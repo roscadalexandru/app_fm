@@ -54,19 +54,6 @@ class Track {
     return '$m : $s';
   }
 
-  static double getImageSize([ImageSize imageSize = ImageSize.small]) {
-    switch (imageSize) {
-      case ImageSize.small:
-        return 34;
-      case ImageSize.medium:
-        return 64;
-      case ImageSize.large:
-        return 174;
-      case ImageSize.extraLarge:
-        return 300;
-    }
-  }
-
   factory Track.fromJson(Map<String, dynamic> json) => _$TrackFromJson(json);
   Map<String, dynamic> toJson() => _$TrackToJson(this);
 

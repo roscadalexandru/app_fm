@@ -1,7 +1,6 @@
-import 'package:app_fm/model/model.dart';
-import 'package:app_fm/widgets/widgets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import '../model/model.dart';
+import 'widgets.dart';
+import 'package:flutter/material.dart' hide Image;
 
 class TrackCover extends StatelessWidget {
   const TrackCover({
@@ -18,25 +17,14 @@ class TrackCover extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox.fromSize(
-        size: Size.fromWidth(Track.getImageSize(ImageSize.large)),
+        size: Size.fromWidth(Image.getImageSize(ImageSize.large)),
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(5.0),
-              child: CachedImageHandled(url: track.getImage(ImageSize.large)),
-            ),
-            Container(
-              decoration: BoxDecoration(
+            CachedImageHandled(
                 borderRadius: BorderRadius.circular(5.0),
-                gradient: const LinearGradient(
-                  colors: [Colors.transparent, Colors.black],
-                  stops: [0.25, 1],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
-            ),
+                url: track.getImage(ImageSize.large)),
+            const BottomGradientBackground(),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text.rich(

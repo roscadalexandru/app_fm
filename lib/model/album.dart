@@ -40,18 +40,6 @@ class Album {
     return url;
   }
 
-  static double getImageSize([ImageSize imageSize = ImageSize.small]) {
-    switch (imageSize) {
-      case ImageSize.small:
-        return 34;
-      case ImageSize.medium:
-        return 64;
-      case ImageSize.large:
-        return 174;
-      case ImageSize.extraLarge:
-        return 300;
-    }
-  }
 
   factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
   Map<String, dynamic> toJson() => _$AlbumToJson(this);

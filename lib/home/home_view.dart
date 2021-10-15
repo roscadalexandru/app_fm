@@ -42,14 +42,17 @@ class _HomeViewState extends State<HomeView> {
               builder: (context, state) {
                 switch (state.status) {
                   case SearchAlbumStatus.idle:
-                    return const Center(child: Text('Search for any album'));
+                    return const Center(
+                        child: Text('Search for any artist, album or track'));
                   case SearchAlbumStatus.loading:
                     return const Center(
                       child: CircularProgressIndicator.adaptive(),
                     );
                   case SearchAlbumStatus.success:
-                    if (state.albums.isEmpty) {
-                      return const Center(child: Text('No album found'));
+                    if (state.albums.isEmpty &&
+                        state.artists.isEmpty &&
+                        state.tracks.isEmpty) {
+                      return const Center(child: Text('Nothing found'));
                     }
                     return SearchResultView(
                       albums: state.albums,

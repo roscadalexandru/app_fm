@@ -1,6 +1,6 @@
-import 'package:app_fm/model/model.dart';
-import 'package:app_fm/widgets/widgets.dart';
-import 'package:flutter/material.dart';
+import '../../model/model.dart';
+import '../../widgets/widgets.dart';
+import 'package:flutter/material.dart' hide Image;
 
 class TrackHorizontalList extends StatelessWidget {
   const TrackHorizontalList(this.tracks, {Key? key}) : super(key: key);
@@ -8,7 +8,7 @@ class TrackHorizontalList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Album.getImageSize(ImageSize.large),
+      height: Image.getImageSize(ImageSize.large),
       child: ListView.separated(
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

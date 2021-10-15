@@ -14,6 +14,19 @@ class Image {
   factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
   Map<String, dynamic> toJson() => _$ImageToJson(this);
 
+  static double getImageSize([ImageSize imageSize = ImageSize.small]) {
+    switch (imageSize) {
+      case ImageSize.small:
+        return 34;
+      case ImageSize.medium:
+        return 64;
+      case ImageSize.large:
+        return 174;
+      case ImageSize.extraLarge:
+        return 300;
+    }
+  }
+
   @override
   String toString() => 'Image(url: $url, size: $size)';
 
