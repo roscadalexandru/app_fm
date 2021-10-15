@@ -1,6 +1,6 @@
-import 'package:app_fm/widgets/widgets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/widgets.dart';
 
 class AlbumSmallDetails extends StatelessWidget {
   const AlbumSmallDetails({
@@ -20,10 +20,8 @@ class AlbumSmallDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(5.0),
-          child: CachedImageHandled(url: albumImage),
-        ),
+        CachedImageHandled(
+            borderRadius: BorderRadius.circular(5.0), url: albumImage),
         Flexible(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),

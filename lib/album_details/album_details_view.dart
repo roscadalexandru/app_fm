@@ -1,9 +1,8 @@
-import 'package:app_fm/model/model.dart';
-import 'package:app_fm/widgets/widgets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../model/model.dart';
+import '../widgets/widgets.dart';
 import 'album_details.dart';
 import 'widgets/widgets.dart';
 

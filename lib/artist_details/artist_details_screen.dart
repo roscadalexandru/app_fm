@@ -1,6 +1,6 @@
-import 'package:app_fm/artist_details/artist_details.dart';
-import 'package:app_fm/error_handler/error_handler.dart';
-import 'package:app_fm/model/model.dart';
+import 'artist_details.dart';
+import '../error_handler/error_handler.dart';
+import '../model/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

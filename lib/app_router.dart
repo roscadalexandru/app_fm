@@ -1,5 +1,5 @@
-import 'package:app_fm/album_details/album_details.dart';
-import 'package:app_fm/home/home.dart';
+import 'album_details/album_details.dart';
+import 'home/home.dart';
 import 'package:flutter/material.dart';
 
 import 'artist_details/artist_details.dart';

@@ -1,5 +1,5 @@
-class LastFmApiErrorException implements Exception {
-  LastFmApiErrorException(this.error);
+class LastFmApiException implements Exception {
+  LastFmApiException(this.error);
   final int error;
 
   String get errorMessage {

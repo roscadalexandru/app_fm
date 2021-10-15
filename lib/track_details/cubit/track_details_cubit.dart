@@ -1,5 +1,5 @@
-import 'package:app_fm/last_fm_api.dart';
-import 'package:app_fm/model/model.dart';
+import '../../api/last_fm_api.dart';
+import '../../model/model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -21,6 +21,9 @@ class TrackDetailsCubit extends Cubit<TrackDetailsState> {
         name: _track.name,
         artist: _track.artist.name,
       );
+      if (track == null) {
+        throw ('Something went wrong');
+      }
       emit(state.copyWith(track: track, status: TrackDetailsStatus.success));
     } catch (e) {
       emit(state.copyWith(

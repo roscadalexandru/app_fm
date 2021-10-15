@@ -1,5 +1,7 @@
-import 'package:app_fm/model/model.dart';
+import '../../model/model.dart';
 import 'package:flutter/material.dart';
+
+import 'track_list_tile.dart';
 
 class TracksList extends StatelessWidget {
   const TracksList({Key? key, required this.tracks}) : super(key: key);
@@ -34,42 +36,7 @@ class TracksList extends StatelessWidget {
             },
             itemBuilder: (BuildContext context, int index) {
               final track = tracks[index];
-              return Row(
-                children: [
-                  Text(
-                    '${track.rank}.',
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(width: 12.0),
-                  Flexible(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          track.name,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 4.0),
-                        Text(
-                          track.artist.name ?? "",
-                          style: const TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(track.convertDurationToTime)
-                ],
-              );
+              return TrackListTile(track: track);
             },
           ),
       ],

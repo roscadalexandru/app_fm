@@ -1,36 +1,31 @@
 import 'dart:convert';
 
-import 'package:app_fm/helpers/last_fm_api_error_exception.dart';
 import 'package:http/http.dart' as http;
 
-import 'model/model.dart';
+import '../model/model.dart';
+import 'api.dart';
 
 class LastFmApi {
-  static const scheme = 'http';
-  static const String urlRoot = 'ws.audioscrobbler.com';
-  static const String _apiKey = 'cbb7e38d666a6324290e59916239b840';
-  static const String _secret = '76248f09ea04fbe0fa29c232d1a5942c';
-
   static Future<List<Album>> searchAlbums(String name,
       {int page = 1, int limit = 10}) async {
     final httpResponse = await http.get(
       Uri(
-        scheme: scheme,
-        host: urlRoot,
+        scheme: LastFmApiConfig.scheme,
+        host: LastFmApiConfig.urlRoot,
         pathSegments: ['2.0'],
         queryParameters: {
           "method": "album.search",
           "limit": '$limit',
           "page": '$page',
           "album": name,
-          "api_key": _apiKey,
+          "api_key": LastFmApiConfig.apiKey,
           "format": "json"
         },
       ),
     );
     final parseResponse = jsonDecode(httpResponse.body);
     if (parseResponse["error"] != null) {
-      throw LastFmApiErrorException(parseResponse["error"]);
+      throw LastFmApiException(parseResponse["error"]);
     }
     final results = parseResponse["results"];
     final albumMatches = results["albummatches"];
@@ -46,22 +41,22 @@ class LastFmApi {
       int limit = 10}) async {
     final httpResponse = await http.get(
       Uri(
-        scheme: scheme,
-        host: urlRoot,
+        scheme: LastFmApiConfig.scheme,
+        host: LastFmApiConfig.urlRoot,
         pathSegments: ['2.0'],
         queryParameters: {
           "method": "album.getinfo",
           "artist": artist ?? '',
           "album": name ?? '',
           "mbid": mbid ?? '',
-          "api_key": _apiKey,
+          "api_key": LastFmApiConfig.apiKey,
           "format": "json"
         },
       ),
     );
     final parseResponse = jsonDecode(httpResponse.body);
     if (parseResponse["error"] != null) {
-      throw LastFmApiErrorException(parseResponse["error"]);
+      throw LastFmApiException(parseResponse["error"]);
     }
     final album = Album.fromJson(parseResponse["album"]);
     return album;
@@ -71,22 +66,22 @@ class LastFmApi {
       {int page = 1, int limit = 10}) async {
     final httpResponse = await http.get(
       Uri(
-        scheme: scheme,
-        host: urlRoot,
+        scheme: LastFmApiConfig.scheme,
+        host: LastFmApiConfig.urlRoot,
         pathSegments: ['2.0'],
         queryParameters: {
           "method": "artist.search",
           "limit": '$limit',
           "page": '$page',
           "artist": name,
-          "api_key": _apiKey,
+          "api_key": LastFmApiConfig.apiKey,
           "format": "json"
         },
       ),
     );
     final parseResponse = jsonDecode(httpResponse.body);
     if (parseResponse["error"] != null) {
-      throw LastFmApiErrorException(parseResponse["error"]);
+      throw LastFmApiException(parseResponse["error"]);
     }
     final results = parseResponse["results"];
     final albumMatches = results["artistmatches"];
@@ -99,21 +94,21 @@ class LastFmApi {
       {String? name = '', int page = 1, int limit = 10}) async {
     final httpResponse = await http.get(
       Uri(
-        scheme: scheme,
-        host: urlRoot,
+        scheme: LastFmApiConfig.scheme,
+        host: LastFmApiConfig.urlRoot,
         pathSegments: ['2.0'],
         queryParameters: {
           "method": "artist.getinfo",
           "artist": name ?? '',
           "mbid": mbid ?? '',
-          "api_key": _apiKey,
+          "api_key": LastFmApiConfig.apiKey,
           "format": "json"
         },
       ),
     );
     final parseResponse = jsonDecode(httpResponse.body);
     if (parseResponse["error"] != null) {
-      throw LastFmApiErrorException(parseResponse["error"]);
+      throw LastFmApiException(parseResponse["error"]);
     }
     final artist = Artist.fromJson(parseResponse["artist"]);
     return artist;
@@ -123,8 +118,8 @@ class LastFmApi {
       {int page = 1, int limit = 10, String artist = ''}) async {
     final httpResponse = await http.get(
       Uri(
-        scheme: scheme,
-        host: urlRoot,
+        scheme: LastFmApiConfig.scheme,
+        host: LastFmApiConfig.urlRoot,
         pathSegments: ['2.0'],
         queryParameters: {
           "method": "track.search",
@@ -132,14 +127,14 @@ class LastFmApi {
           "page": '$page',
           "track": name,
           "artist": artist,
-          "api_key": _apiKey,
+          "api_key": LastFmApiConfig.apiKey,
           "format": "json"
         },
       ),
     );
     final parseResponse = jsonDecode(httpResponse.body);
     if (parseResponse["error"] != null) {
-      throw LastFmApiErrorException(parseResponse["error"]);
+      throw LastFmApiException(parseResponse["error"]);
     }
     final results = parseResponse["results"];
     final albumMatches = results["trackmatches"];
@@ -155,22 +150,22 @@ class LastFmApi {
       int limit = 10}) async {
     final httpResponse = await http.get(
       Uri(
-        scheme: scheme,
-        host: urlRoot,
+        scheme: LastFmApiConfig.scheme,
+        host: LastFmApiConfig.urlRoot,
         pathSegments: ['2.0'],
         queryParameters: {
           "method": "track.getinfo",
           "track": name ?? '',
           "artist": artist ?? '',
           "mbid": mbid ?? '',
-          "api_key": _apiKey,
+          "api_key": LastFmApiConfig.apiKey,
           "format": "json"
         },
       ),
     );
     final parseResponse = jsonDecode(httpResponse.body);
     if (parseResponse["error"] != null) {
-      throw LastFmApiErrorException(parseResponse["error"]);
+      throw LastFmApiException(parseResponse["error"]);
     }
     final track = Track.fromJson(parseResponse["track"]);
     return track;

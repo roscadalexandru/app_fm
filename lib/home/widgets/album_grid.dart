@@ -1,5 +1,5 @@
-import 'package:app_fm/model/model.dart';
-import 'package:app_fm/widgets/widgets.dart';
+import '../../model/model.dart';
+import '../../widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class AlbumsGrid extends StatelessWidget {

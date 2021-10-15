@@ -1,7 +1,8 @@
-import 'package:app_fm/last_fm_api.dart';
-import 'package:app_fm/model/model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../api/last_fm_api.dart';
+import '../../model/model.dart';
 
 part 'artist_details_state.dart';
 
@@ -18,6 +19,9 @@ class ArtistDetailsCubit extends Cubit<ArtistDetailsState> {
       emit(state.copyWith(status: ArtistDetailsStatus.loading));
       final artist =
           await LastFmApi.getArtistInfo(_artist.mbid, name: _artist.name);
+      if (artist == null) {
+        throw ('Something went wrong');
+      }
       emit(state.copyWith(artist: artist, status: ArtistDetailsStatus.success));
     } catch (e) {
       emit(state.copyWith(

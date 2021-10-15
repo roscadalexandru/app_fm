@@ -1,10 +1,7 @@
-import 'package:app_fm/home/widgets/widgets.dart';
-import 'package:app_fm/model/model.dart';
-import 'package:app_fm/widgets/widgets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import '../model/model.dart';
+import '../widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import 'artist_details.dart';
 import 'widgets/widgets.dart';
@@ -24,9 +21,6 @@ class ArtistDetailsView extends StatelessWidget {
               child: CircularProgressIndicator.adaptive(),
             );
           case ArtistDetailsStatus.success:
-            if (state.artist == null) {
-              return const Text('Couldn`t load artist`s details');
-            }
             return ArtistDetails(state.artist!);
           case ArtistDetailsStatus.failure:
             return const Center(child: Text('Couldn`t load artist`s details'));
@@ -64,94 +58,6 @@ class ArtistDetails extends StatelessWidget {
                 emptyContentDisplay: 'There is no artist description'),
           ),
           SimilarArtists(artists: artist.similar)
-        ],
-      ),
-    );
-  }
-}
-
-class SimilarArtists extends StatelessWidget {
-  const SimilarArtists({Key? key, required this.artists}) : super(key: key);
-
-  final List<Artist> artists;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 16.0),
-          child: Text(
-            'Similar artists',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        ArtistsHorizontalList(artists)
-      ],
-    );
-  }
-}
-
-class ArtistSmallDetails extends StatelessWidget {
-  const ArtistSmallDetails(
-      {Key? key,
-      required this.artistImage,
-      required this.name,
-      required this.listeners})
-      : super(key: key);
-
-  final String? artistImage;
-  final String name;
-  final String listeners;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(5.0),
-            child: CachedImageHandled(url: artistImage),
-          ),
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    name,
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8.0),
-                  Text.rich(
-                    TextSpan(
-                        style: const TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.grey,
-                        ),
-                        children: [
-                          const TextSpan(text: "Listeners: "),
-                          TextSpan(
-                              text: listeners,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w600)),
-                        ]),
-                  ),
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );

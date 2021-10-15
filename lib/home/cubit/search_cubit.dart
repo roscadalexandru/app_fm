@@ -1,5 +1,5 @@
-import 'package:app_fm/last_fm_api.dart';
-import 'package:app_fm/model/model.dart';
+import '../../api/last_fm_api.dart';
+import '../../model/model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

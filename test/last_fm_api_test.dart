@@ -1,4 +1,4 @@
-import 'package:app_fm/last_fm_api.dart';
+import 'package:app_fm/api/last_fm_api.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {

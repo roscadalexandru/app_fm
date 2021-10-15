@@ -1,4 +1,4 @@
-import 'package:app_fm/app_router.dart';
+import 'app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

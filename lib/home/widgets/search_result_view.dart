@@ -1,5 +1,5 @@
 
-import 'package:app_fm/model/model.dart';
+import '../../model/model.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets.dart';
