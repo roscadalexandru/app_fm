@@ -15,7 +15,11 @@ class TrackHorizontalList extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             final track = tracks[index];
-            return TrackCover(track: track);
+            return TrackCover(
+              track: track,
+              onTap: () => Navigator.of(context)
+                  .pushNamed('/track-details', arguments: track),
+            );
           },
           separatorBuilder: (context, index) => const SizedBox(width: 8.0),
           itemCount: tracks.length),

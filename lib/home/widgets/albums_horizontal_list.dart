@@ -15,7 +15,11 @@ class AlbumsHorizontalList extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             final album = albums[index];
-            return AlbumCover(album: album);
+            return AlbumCover(
+              album: album,
+              onTap: () => Navigator.of(context)
+                  .pushNamed('/album-details', arguments: album),
+            );
           },
           separatorBuilder: (context, index) => const SizedBox(width: 8.0),
           itemCount: albums.length),

@@ -4,6 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 main() {
   test('FM Api Test', () async {
     // LastFmApi lastFmApi = LastFmApi();
-    print(await LastFmApi.searchAlbums());
+    print(await LastFmApi.getArtistInfo('', name: 'Bieber'));
   });
 }

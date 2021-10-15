@@ -7,21 +7,37 @@ part 'album.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Album {
   Album({
-    required this.name,
-    required this.artist,
-    required this.url,
+    this.name,
+    this.artist,
+    this.url,
+    this.mbid,
     required this.image,
+    this.playcount,
+    required this.tags,
+    required this.tracks,
+    this.wiki,
   });
-  String? name;
-  String? artist;
-  String? url;
-  List<Image> image;
+
+  final String? name;
+  final String? artist;
+  final String? url;
+  final String? mbid;
+  @JsonKey(includeIfNull: true, defaultValue: <Image>[])
+  final List<Image> image;
+  final String? playcount;
+  @JsonKey(fromJson: Track.fromJsonToTracks)
+  final List<Track> tracks;
+  final dynamic wiki;
+  @JsonKey(fromJson: Tag.fromJsonToTags)
+  final List<Tag> tags;
 
   String getImage([ImageSize imageSize = ImageSize.small]) {
-    return image
+    final url = image
         .firstWhere((image) => image.size == imageSize.toString().split('.')[1],
             orElse: () => image.last)
         .url;
+    if (url.isEmpty) print(artist);
+    return url;
   }
 
   static double getImageSize([ImageSize imageSize = ImageSize.small]) {
@@ -42,6 +58,7 @@ class Album {
 
   @override
   String toString() {
-    return 'Album(name: $name, artist: $artist, url: $url, image: $image)';
+    return 'Album(name: $name,\n artist: $artist,\n url: $url,\n image: $image)\n' +
+        '-' * 100;
   }
 }

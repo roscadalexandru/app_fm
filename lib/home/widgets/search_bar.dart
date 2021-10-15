@@ -30,12 +30,10 @@ class SearchBar extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                if (_focusNode.hasFocus == true) {
+                if (!_focusNode.hasFocus) {
                   FocusScope.of(context).requestFocus(_focusNode);
                   return;
-                }
-
-                if (controller.text.isNotEmpty) {
+                } else if (controller.text.isNotEmpty) {
                   onSearch?.call(controller.text);
                   _focusNode.unfocus();
                 }

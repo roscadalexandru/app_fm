@@ -15,7 +15,12 @@ class ArtistsHorizontalList extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             final artist = artists[index];
-            return ArtistCover(artist: artist);
+            return ArtistCover(
+                artist: artist,
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed('/artist-details', arguments: artist);
+                });
           },
           separatorBuilder: (context, index) => const SizedBox(width: 8.0),
           itemCount: artists.length),

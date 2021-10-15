@@ -5,8 +5,8 @@ import 'package:equatable/equatable.dart';
 
 part 'search_state.dart';
 
-class SeachCubit extends Cubit<SearchState> {
-  SeachCubit() : super(SearchState.init());
+class SearchCubit extends Cubit<SearchState> {
+  SearchCubit() : super(SearchState.init());
 
   Future<void> searchAlbums(String name) async {
     if (state.status == SearchAlbumStatus.loading) return;
@@ -17,6 +17,7 @@ class SeachCubit extends Cubit<SearchState> {
     } catch (e) {
       emit(state.copyWith(
           errorMessage: '$e', status: SearchAlbumStatus.failure));
+      emit(state.copyWith(status: SearchAlbumStatus.idle));
     }
   }
 
@@ -29,6 +30,7 @@ class SeachCubit extends Cubit<SearchState> {
     } catch (e) {
       emit(state.copyWith(
           errorMessage: '$e', status: SearchAlbumStatus.failure));
+      emit(state.copyWith(status: SearchAlbumStatus.idle));
     }
   }
 
@@ -41,6 +43,7 @@ class SeachCubit extends Cubit<SearchState> {
     } catch (e) {
       emit(state.copyWith(
           errorMessage: '$e', status: SearchAlbumStatus.failure));
+      emit(state.copyWith(status: SearchAlbumStatus.idle));
     }
   }
 
